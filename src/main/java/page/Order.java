@@ -5,6 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.thoughtworks.selenium.SeleneseTestBase.assertEquals;
+import static com.thoughtworks.selenium.SeleneseTestBase.assertFalse;
+import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
+
 /**
  * Created by Dima on 12.03.2015.
  */
@@ -16,11 +20,17 @@ public class Order extends PageObject {
     @FindBy(xpath = "//*[@id='wrapper']/div/header/div/nav/ul/li[2]/a")
     private WebElement click;
 
-    @FindBy(className = "promotags")
+    @FindBy(xpath = "//*[@id='contentRow']/div[2]/div/div[2]/div/div[1]/div[2]/button")
     private WebElement clickProd;
+    @FindBy(xpath = "//*[@id='contentRow']/div[1]/div/div[2]/div/div[1]/div[2]/button")
+    private WebElement clickProdNo;
 
     @FindBy(id = "button-cart")
     private WebElement buy;
+
+
+
+
 
     @FindBy(linkText = "Оформление заказа")
     private WebElement orderBuy;
@@ -50,9 +60,22 @@ public class Order extends PageObject {
 
     public void setClick() {
         clickOn(click);
+
     }
+    public void setClickNotGood() {
+        clickOn(clickProdNo);
+        if (clickProdNo != null) {
+            assertFalse("Нет товра в наличии", element(clickProdNo).isPresent());
+        }
+    }
+
     public void setClickProd() {
+
         clickOn(clickProd);
+        if (clickProd == null) {
+            assertTrue(element(clickProd).isPresent());
+        }
+
     }
     public void setBuy() {
         clickOn(buy);

@@ -16,7 +16,7 @@ import utils.Application;
 @RunWith(ThucydidesRunner.class)
 @Concurrent(threads = "1")
 public class TestAuth extends BeforeClass {
-    @ManagedPages(defaultUrl = "http://deesse.com.ua/cumki")
+    @ManagedPages(defaultUrl = "http://deesse.com.ua/")
     public Pages pages;
 
     @WithTag("Регистрация")
@@ -60,27 +60,35 @@ public class TestAuth extends BeforeClass {
 
     }
     @WithTag("Заказ")
-   // @Test
+   @Test
     public void FourTestOrder() throws InterruptedException {
 
         click.addClick();
         clickProd.addClickProd();
-        buy.addBuy();
         orderBuy.addOrderBuy();
         nameOrder.addName();
         emailOrder.addEmail();
         phoneOrder.addPhone();
         order.addOrder();
-        Thread.sleep(3000);
+
+    }
+    @WithTag("Товар не найден")
+    @Test
+    public void SixTestOrder() throws InterruptedException {
+
+        click.addClick();
+        buy2.addBuy2();
+
     }
     @WithTag("Фильтр")
-  @Test
+ // @Test
     public void FiveTestFilter() throws InterruptedException {
 
+        click.addClick();
         price.addPrice();
-      // size.addSize();
-      color.addColor();
-    buttons.addButton();
+        color.addColor();
+        buttons.addButton();
+        assertText();
     }
 
 

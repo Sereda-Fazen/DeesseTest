@@ -10,6 +10,8 @@ import javax.swing.*;
 
 import static com.thoughtworks.selenium.SeleneseTestBase.assertFalse;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
 /**
  * Created by Dima on 20.03.2015.
@@ -26,20 +28,6 @@ public class Filter extends PageObject {
     //Показать
     @FindBy (xpath = "//*[@id='filter-button']/span")
     private WebElement view;
-
-
-
-    //Size
-    @FindBy (xpath = "//*[@id='other-options']/div[4]/div[1]")
-    private WebElement size;
-    @FindBy (xpath = "//*[@id='v-39254']")
-    private WebElement selectSize1;
-    @FindBy (xpath = "//*[@id='v-39255']/span/button")
-    private WebElement selectSize2;
-    @FindBy (xpath = "//*[@id='v-39256']/span/button")
-    private WebElement selectSize3;
-    @FindBy (xpath = "//*[@id='v-39257']/span/button")
-    private WebElement selectSize4;
 
 
     //Color
@@ -67,7 +55,8 @@ public class Filter extends PageObject {
     private WebElement selectColorFalse;
 
 
-    public void setFilterPrice() throws InterruptedException{
+    public void setFilterPrice() throws InterruptedException {
+
         clickOn(price);
         Actions min1 = new Actions(getDriver());
         min1.dragAndDropBy(leftPrice, 10, 0).perform();
@@ -77,8 +66,6 @@ public class Filter extends PageObject {
         max1.dragAndDropBy(rigthPrice, -10, 0).perform();
         Thread.sleep(1000);
 
-
-//
         Actions min2 = new Actions(getDriver());
         min2.dragAndDropBy(leftPrice, 50, 0).perform();
         Thread.sleep(1000);
@@ -92,21 +79,6 @@ public class Filter extends PageObject {
         assertTrue(element(selectPrice).isPresent());
         clickOn(selectPrice);
 
-/*
-        Actions min3 = new Actions(getDriver());
-        min3.dragAndDropBy(leftPrice, 50, 0).perform();
-        Thread.sleep(1000);
-
-        Actions max3 = new Actions(getDriver());
-        max3.dragAndDropBy(rigthPrice, -50, 0).perform();
-        Thread.sleep(1000);
-        assertTrue(element(one).isPresent());
-*/
-
-    }
-    public void setFilterSize() {
-        clickOn(size);
-        clickOn(selectSize1);
     }
     public void setFilterColor() {
         clickOn(color);
@@ -116,17 +88,14 @@ public class Filter extends PageObject {
     }
     public void setButton () throws InterruptedException{
         clickOn(selectButton);
-        assertTrue(element(selectPrice).isPresent());
-
-
-
     }
-
-
-
 
     public Filter (WebDriver driver) {
         super(driver, CATALOG_WAIT_FOR_TIMEOUT);
+    }
+
+    public String getTextNote () {
+        return $(selectPrice).getText();
     }
 
 }

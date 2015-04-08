@@ -82,6 +82,8 @@ public class BeforeClass {
     @Steps
     public OrderSteps buy;
     @Steps
+    public OrderSteps buy2;
+    @Steps
     public OrderSteps orderBuy;
     @Steps
     public OrderSteps nameOrder;
@@ -96,8 +98,6 @@ public class BeforeClass {
 
     @Steps
     public FilterSteps price;
-    @Steps
-    public FilterSteps size;
     @Steps
     public FilterSteps color;
     @Steps
@@ -115,6 +115,10 @@ public class BeforeClass {
     @After
     public void close() throws IOException {
         driver.close();
+    }
+
+    public void assertText() {
+        Assert.assertThat(color.getAssertText(), is("Сбросить все"));
     }
 
 

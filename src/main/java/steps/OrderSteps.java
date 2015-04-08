@@ -36,6 +36,11 @@ public class OrderSteps extends ScenarioSteps {
     public void addBuy() {
         orderPage.setBuy();
     }
+    @Step("Кликнул Купить если нет товара")
+    public void addBuy2() {
+        orderPage.setClickNotGood();
+    }
+
 
     @Step("Кликнул Оформить заказ")
     public void addOrderBuy() {

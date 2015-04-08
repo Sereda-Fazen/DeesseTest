@@ -22,22 +22,23 @@ public class FilterSteps extends ScenarioSteps {
         Filter loginPage = getPages().get( Filter.class);
         loginPage.open();
     }
-
     @Step("Выбрал цену")
     public void addPrice() throws InterruptedException{
         filterPage.setFilterPrice();
-    }
-    @Step("Выбрал размер")
-    public void addSize() {
-        filterPage.setFilterSize();
+
     }
     @Step("Выбрал цвет")
     public void addColor() {
         filterPage.setFilterColor();
+
     }
     @Step("Кликнул" )
     public void addButton() throws InterruptedException{
         filterPage.setButton();
+    }
+    @Step ("Assert")
+    public String getAssertText(){
+        return filterPage.getTextNote();
     }
 
 
